@@ -7,28 +7,28 @@ import com.example.myralyn.coderswag.Model.Product
  * Created by myralyn on 18/01/18.
  */
 object DataService {
-    val categories = listOf(Category("HATS","hatimage.png"),
-            Category("HOODIES","hoodieimage.png"),
-            Category("DIGITAL","digitalgoodsimage.png"),
-            Category("SHIRT","shirtimage.png")
+    val categories = listOf(Category("HATS","hatimage"),
+            Category("HOODIES","hoodieimage"),
+            Category("DIGITAL","digitalgoodsimage"),
+            Category("SHIRT","shirtimage")
     )
 
     //declare the products
-    val hats = listOf(Product("Devslopes Graphic Beanie","$18","hat01"),
-            Product("Devslopes Hat Black","$20","hat02"),
-            Product("Devslopes Hat White","$18","hat03"),
-            Product("Devslopes Hat Snapback","$22","hat04")
+    val hats = listOf(Product("Devslopes Graphic Beanie","$18","hat1"),
+            Product("Devslopes Hat Black","$20","hat2"),
+            Product("Devslopes Hat White","$18","hat3"),
+            Product("Devslopes Hat Snapback","$22","hat4")
             )
 
-    val hoodies = listOf(Product("Devslopes Hoodie Gray","$28","hoodies01"),
-            Product("Devslopes Hoodie Red","$32","hoodies02"),
-            Product("Devslopes Gray Hoodie","$28","hoodies03"),
-            Product("Devslopes Black Hoodie","$32","hoodies04")
+    val hoodies = listOf(Product("Devslopes Hoodie Gray","$28","hoodie1"),
+            Product("Devslopes Hoodie Red","$32","hoodie2"),
+            Product("Devslopes Gray Hoodie","$28","hoodie3"),
+            Product("Devslopes Black Hoodie","$32","hoodie4")
     )
 
-    val shirts = listOf(Product("Devslopes Shirt Black","$18","shirt01"),
-            Product("Devslopes Badge Light Gray","$20","shirt02"),
-            Product("Devslopes Logo Shirt Red","$22","shirt03"),
-            Product("Devslopes Hustle","$22","shirt04"),
-            Product("Kickflip Studios","$18","shirt05")    )
+    val shirts = listOf(Product("Devslopes Shirt Black","$18","shirt1"),
+            Product("Devslopes Badge Light Gray","$20","shirt2"),
+            Product("Devslopes Logo Shirt Red","$22","shirt3"),
+            Product("Devslopes Hustle","$22","shirt4"),
+            Product("Kickflip Studios","$18","shirt5")    )
 }
