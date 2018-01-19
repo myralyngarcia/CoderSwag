@@ -17,17 +17,31 @@ class CategoryAdapter(val context: Context, val categories: List<Category>): Bas
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val categoryView: View
-        categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item, null)
-        //image and name ui elements references
-        val categoryImage: ImageView = categoryView.findViewById(R.id.categoryImage)
-        val categoryName: TextView = categoryView.findViewById(R.id.categoryName)
+        val holder : ViewHolder
+
+        if(convertView == null) {
+            //this means it the 1st time these views are present, when we launch the first time
+            //if this is the case we go through the process of inflating and finding the id
+            categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item, null)
+            holder = ViewHolder()
+            //image and name ui elements references
+            holder.categoryImage = categoryView.findViewById(R.id.categoryImage)
+            holder.categoryName = categoryView.findViewById(R.id.categoryName)
+            println("I exist for the first time!")
+            categoryView.tag = holder
+
+        }else{//we reuse the cell
+            holder = convertView.tag as ViewHolder
+            categoryView = convertView
+            println("Go green, recycle!")
+        }
 
         //now we have CategoryView, image and name ui elements references now we can assign these values
         //for the category that it corresponds to in the list view
         //we can grab each category for each corresponding row element by doing the following
         //then assigning the title, ie: HATS, HOODIES, DIGITAL to the text ui element
         val category = categories[position]
-        categoryName.text = category.title
+        holder.categoryName?.text = category.title
 
 
         //the image we do: from res we see the image name ie. hat1.png, hat2.png we need to convert this string
@@ -36,13 +50,7 @@ class CategoryAdapter(val context: Context, val categories: List<Category>): Bas
         val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
 
         //now we have reference that corresponds to category image, then we can say
-        categoryImage.setImageResource(resourceId)
-
-        //printout this resourceId so we see what it looks like
-        println(resourceId)
-
-
-
+        holder.categoryImage?.setImageResource(resourceId)
         return categoryView
 
     }
@@ -59,4 +67,12 @@ class CategoryAdapter(val context: Context, val categories: List<Category>): Bas
         return categories.count()
     }
 
+    //we need a class inside the Category Adapter to use ViewHolder
+    //this allows us to recycle our views
+    private class ViewHolder {
+        var categoryImage: ImageView? = null
+        var categoryName: TextView? = null
+    }
+
 }
+
