@@ -1,5 +1,6 @@
 package com.example.myralyn.coderswag.Controller
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import com.example.myralyn.coderswag.Adapters.CategoryRecycleAdapter
 import com.example.myralyn.coderswag.Model.Category
 import com.example.myralyn.coderswag.R
 import com.example.myralyn.coderswag.Services.DataService
+import com.example.myralyn.coderswag.Utilities.EXTRA_CATEGORY
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,9 +24,13 @@ class MainActivity : AppCompatActivity() {
         //adapter = CategoryAdapter(this, DataService.categories)
         //we use lambda category->
         adapter = CategoryRecycleAdapter(this, DataService.categories){ category ->
-            println(category.title)//when we click on the item the name appears in logcat
-            println(category.image)
-            //but we want to transition to another activity, lets work on it
+            //when we click on the itemt we transition to another activity
+            val productIntent = Intent(this, ProductsActivity::class.java)
+            //we need to pass data so when we click in name the name of product is printed out
+            //we need to create package Utilites and file Constants
+            productIntent.putExtra(EXTRA_CATEGORY,category.title)
+            startActivity(productIntent)
+
         }
         //tell ui element categoryListView what it needs to listen to
         categoryListView.adapter = adapter
