@@ -1,19 +1,23 @@
 package com.example.myralyn.coderswag.Controller
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.example.myralyn.coderswag.Adapters.ProductRecyclerAdaptor
+import com.example.myralyn.coderswag.Model.Product
 import com.example.myralyn.coderswag.R
 import com.example.myralyn.coderswag.Services.DataService
 import com.example.myralyn.coderswag.Utilities.EXTRA_CATEGORY
+import com.example.myralyn.coderswag.Utilities.EXTRA_PRODUCT
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.category_list_item.*
 
 class ProductsActivity : AppCompatActivity() {
 
     lateinit var adapter: ProductRecyclerAdaptor
+    var product = Product("","","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +25,14 @@ class ProductsActivity : AppCompatActivity() {
         val categoryType = intent.getStringExtra(EXTRA_CATEGORY)
         //println(categoryType)
 
-        //this is going to return the list of produce based on the category user clicks
-        adapter = ProductRecyclerAdaptor(this, DataService.getProducts(categoryType))
+        //this is going to return the list of product based on the category user clicks
+        adapter = ProductRecyclerAdaptor(this, DataService.getProducts(categoryType)){product ->
+            //when we click on the product we transition to ProductDetailActivity
+            val productDetailIntent = Intent(this, ProductDetailActivity::class.java)
+            //we also need to pass an instance of Product class from this ProductActivity to ProductDetailActivity
+            productDetailIntent.putExtra(EXTRA_PRODUCT,product)
+            startActivity(productDetailIntent)
+        }
 
         //when we rotate the device to landscape we have many spaces, so lets increase spancount
         //when in landscape mode
