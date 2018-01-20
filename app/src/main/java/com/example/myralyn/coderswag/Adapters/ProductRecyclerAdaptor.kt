@@ -21,7 +21,7 @@ class ProductRecyclerAdaptor(val context: Context, val products: List<Product>, 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ProductHolder {
         //this is when we inflat the view for the very first time if no view to recycle
         val view = LayoutInflater.from(context).inflate(R.layout.product_list_item, parent, false)
-        return ProductHolder(view)
+        return ProductHolder(view, itemClick)
     }
 
     override fun getItemCount(): Int {

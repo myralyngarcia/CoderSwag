@@ -6,7 +6,7 @@ import android.os.Parcelable
 /**
  * Created by myralyn on 18/01/18.
  */
-class Product(val title: String, val price: String, val image: String): Parcelable{
+class Product(val title: String, val price: String, val image: String ): Parcelable{
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),

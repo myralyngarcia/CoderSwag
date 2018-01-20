@@ -15,6 +15,7 @@ class ProductDetailActivity : AppCompatActivity() {
         val product=intent.getParcelableExtra<Product>(EXTRA_PRODUCT)
         productDesc.text=product.title
         productPrice.text=product.price
+        productDetailedDesc.text="No Description for this product exists in DataService"
         val resourceId = this.resources.getIdentifier(product.image, "drawable", this.packageName)
         productImage.setImageResource(resourceId)
 
